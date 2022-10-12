@@ -1,0 +1,117 @@
+#VRML_SIM R2021b utf8
+WorldInfo {
+  info [
+    "iRobot Create simulation"
+    "The vacuum cleaner robot goes randomly into the apartment while a supervisor tracks its position and alterates the ground texture."
+    "The robot can be stopped by the virtual walls emitting IR light."
+  ]
+  title "iRobot Create"
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation -0.999692734283633 -0.020122545543768865 0.014474811962580332 1.3883066015249428
+  position -4.303133694706055 25.63116808206499 3.8918287560623
+  near 0.1
+  follow "Create"
+}
+TexturedBackground {
+}
+CeilingLight {
+  translation 1.29685 2.4 -1.82639
+  pointLightColor 1 1 0.9372549019607843
+  pointLightIntensity 7
+}
+CeilingLight {
+  translation -1.9443400000000004 2.4 3.25511
+  name "ceiling light(2)"
+  pointLightIntensity 6
+}
+Wall {
+  translation 0 0 -5
+  size 10.3 2.4 0.3
+}
+Wall {
+  translation -5 0 0
+  rotation 0 1 0 1.5708
+  name "wall(2)"
+  size 9.7 2.4 0.3
+}
+Wall {
+  translation 0 0 5
+  name "wall(3)"
+  size 10.3 2.4 0.3
+}
+Wall {
+  translation 5 0 0
+  rotation 0 1 0 1.5708
+  name "wall(4)"
+  size 9.7 2.4 0.3
+}
+Wall {
+  translation -2.675 0 1.65
+  name "wall(5)"
+  size 4.35 2.4 0.3
+}
+Wall {
+  translation 1.15 0 1.65
+  name "wall(6)"
+  size 1.3 2.4 0.3
+}
+Door {
+  translation 0 0 1.65
+  rotation 0 1 0 3.14159
+  size 1.1 2.4 0.3
+  position 6.789080202234032e-10
+}
+LandscapePainting {
+  translation 4.77308 1.5 -0.292736
+  rotation 0 1 0 -1.5708
+}
+DEF IROBOT_CREATE Create {
+  translation -0.999096 0.0431022 1.20584
+  rotation -0.5298039736274185 -0.14278799289229946 0.8360139583848981 0.00740909
+  controller "vacuumCleaner"
+}
+Robot {
+  children [
+    Shape {
+      appearance Parquetry {
+        textureTransform TextureTransform {
+          scale 7 7
+        }
+      }
+      geometry Plane {
+        size 10 10
+      }
+    }
+    Display {
+      translation 0 0.01 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "https://raw.githubusercontent.com/cyberbotics/webots/R2021b/projects/robots/irobot/create/worlds/textures/dirty.jpg"
+              ]
+            }
+            transparency 0.9
+            roughness 0.5
+            metalness 0
+          }
+          geometry Plane {
+            size 9.9 9.9
+          }
+        }
+      ]
+      name "ground_display"
+      width 512
+      height 512
+    }
+  ]
+  boundingObject Plane {
+    size 9.9 9.9
+  }
+  locked TRUE
+  controller "ground"
+  supervisor TRUE
+}
